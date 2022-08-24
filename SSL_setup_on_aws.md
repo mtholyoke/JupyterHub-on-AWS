@@ -43,7 +43,7 @@ Notes:
 ## Move the files to the correct folders
 ssh into the VM where the certificates were moved and move the files to the correct locations
 
-```console
+```
 sudo mv dsjupyterhub.mtholyoke.edu.key /etc/ssl/private
 sudo mv dsjupyterhub_mtholyoke_edu_cert.cer /etc/ssl/certs
 sudo mv dsjupyterhub_mtholyoke_edu_interm.cer /etc/ssl/certs
