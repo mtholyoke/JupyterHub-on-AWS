@@ -57,7 +57,7 @@ Using this [ASW documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGui
 
 #### Commands
 
-```console
+```
 ls -al /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_cert.cer
 sudo chown root:root /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_cert.cer
 sudo chmod 600 /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_cert.cer
@@ -79,7 +79,7 @@ ubuntu@ip-172-31-26-27:~$ ls -al /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_cert.
 
 #### Commands
 
-```console
+```
 ls -al /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_interm.cer
 sudo chown root:root /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_interm.cer
 sudo chmod 644 /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_interm.cer
@@ -101,7 +101,7 @@ ubuntu@ip-172-31-26-27:~$ ls -al /etc/ssl/certs/dsjupyterhub_mtholyoke_edu_inter
 
 #### Commands
 
-```console
+```
 ls -al /etc/ssl/private/dsjupyterhub.mtholyoke.edu.key
 sudo ls -al /etc/ssl/private/dsjupyterhub.mtholyoke.edu.key
 sudo chown root:root /etc/ssl/private/dsjupyterhub.mtholyoke.edu.key
@@ -127,7 +127,7 @@ Refer to [TLJH documentation](https://tljh.jupyter.org/en/latest/howto/admin/htt
 
 #### Commands
 
-```console
+```
 sudo tljh-config show
 sudo tljh-config set https.enabled true
 sudo tljh-config set https.tls.key /etc/ssl/private/dsjupyterhub.mtholyoke.edu.key
