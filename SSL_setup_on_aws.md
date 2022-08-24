@@ -41,12 +41,21 @@ Notes:
 - AWS may not allow scp to overwrite existing files. Transfer the files, you need to make sure files with the same names are deleted. 
 
 ## Move the files to the correct folders
-ssh into the VM where the certificates were moved and move the files to the correct locations
+ssh into the VM where the certificates were moved and move the files to the correct locations.
 
 ```
 sudo mv dsjupyterhub.mtholyoke.edu.key /etc/ssl/private
 sudo mv dsjupyterhub_mtholyoke_edu_cert.cer /etc/ssl/certs
 sudo mv dsjupyterhub_mtholyoke_edu_interm.cer /etc/ssl/certs
+```
+
+## DRAFT - Single setp to move files from local machine to correct folders on EC2
+The following steps should be confirmed but they combine the two actions from above into a more susinct workflow. Assuming file structures of EC2 VM's are consistent the file structure of these commands should stay the same. 
+
+```
+scp -i ~/Desktop/test_server_RSA.pem ~/Desktop/JH_certs/DS/dsjupyterhub.mtholyoke.edu.key ubuntu@ec2-18-213-137-39.compute-1.amazonaws.com:/etc/ssl/private
+scp -i ~/Desktop/test_server_RSA.pem ~/Desktop/JH_certs/DS/dsjupyterhub_mtholyoke_edu_cert.cer ubuntu@ec2-18-213-137-39.compute-1.amazonaws.com:/etc/ssl/certs
+scp -i ~/Desktop/test_server_RSA.pem ~/Desktop/JH_certs/DS/dsjupyterhub_mtholyoke_edu_interm.cer ubuntu@ec2-18-213-137-39.compute-1.amazonaws.com:/etc/ssl/certs
 ```
 
 ## Update permissions
