@@ -49,8 +49,8 @@ sudo mv dsjupyterhub_mtholyoke_edu_cert.cer /etc/ssl/certs
 sudo mv dsjupyterhub_mtholyoke_edu_interm.cer /etc/ssl/certs
 ```
 
-## DRAFT - Single setp to move files from local machine to correct folders on EC2
-The following steps should be confirmed but they combine the two actions from above into a more susinct workflow. Assuming file structures of EC2 VM's are consistent the file structure of these commands should stay the same. 
+## DRAFT - Single setup to move files from local machine to correct folders on EC2
+The following steps should be confirmed but they combine the two actions from above into a more succinct workflow. Assuming file structures of EC2 VM's are consistent the file structure of these commands should stay the same. 
 
 ```
 scp -i ~/Desktop/test_server_RSA.pem ~/Desktop/JH_certs/DS/dsjupyterhub.mtholyoke.edu.key ubuntu@ec2-18-213-137-39.compute-1.amazonaws.com:/etc/ssl/private
