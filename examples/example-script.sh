@@ -1,10 +1,4 @@
 #! /bin/bash
-# ==============================================
-# NOTE: make sure that you add execute permissions to your script files before you 
-# commit them to the repository for the first time!
-#   eg:
-#      chmod a+x examples/example-script.sh
-# ==============================================
 
 # ==============================================
 # help() is displayed when:
@@ -15,9 +9,9 @@ function help() {
   # These variables let you format the script output
   local BOLD=$(tput bold)
   local NORMAL=$(tput sgr0)
-  echo -e "${BOLD}Usage:${NORMAL} example-script.sh --foo=bar --required-parameter=yes"
-  echo
   echo -e "example-script.sh is an example of how to write bash scripts"
+  echo
+  echo -e "${BOLD}Usage:${NORMAL} example-script.sh --foo=bar --required-parameter=yes"
   echo
   echo -e "${BOLD}Options:${NORMAL}"
   echo -e "  --foo                  (optional) the value for foo [you should be more spcific here]"
@@ -56,7 +50,7 @@ function log_error() {
 # ==============================================
 # Initialize
 # ==============================================
-PID=$$ # this is a special syntax that gets the process ID for the script
+PID=$$ # this is a special syntax that gets the process ID for the script; not generally super useful unless you're planning to run the script multiple times concurrently, but it's nice to know about.
 # Colors:
 TEXT_RESET='\033[0m' 
 TEXT_BLACK_BOLD=$(tput bold)
@@ -112,3 +106,5 @@ if [ $? != 0 ]; then
   exit 3 # I use the same code here, because I consider this the same error for the purpose of this script
 fi
 
+log $PID "If you made it here, you have a /foo/bar/ directory for some reason. Good job?"
+exit ## This will automatically return a "0" exit code to whatever called the script (probably your terminal), indicating that the script ran successfully
