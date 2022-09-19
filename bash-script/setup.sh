@@ -1,5 +1,12 @@
 #!bin/bash 
 
+# variables 
+# EMAIL
+# PERMISSION
+
+# associative array of users and their access/permission level
+declare -A users=( [bgebreme@mtholyoke.edu]:admin [jsidman@mtholyoke.edu]:admin [dyoung@mtholyoke.edu]:admin [kmulder@mtholyoke.edu]:admin [student1@mtholyoke.edu]:allowed [student2@mtholyoke.edu]:allowed [student3@mtholyoke.edu]:allowed [student4@mtholyoke.edu]:allowed [student5@mtholyoke.edu]:allowed [student6@mtholyoke.edu]:allowed )
+
 # update apt-get at start of script
 sudo apt-get update
 
@@ -14,17 +21,20 @@ cd /home/ubuntu
 
 # add users - for each user, add user with permission level and email 
 
-sudo tljh-config add-item users.admin bgebreme@mtholyoke.edu
-sudo tljh-config add-item users.admin jsidman@mtholyoke.edu
-sudo tljh-config add-item users.admin dyoung@mtholyoke.edu
-sudo tljh-config add-item users.admin kmulder@mtholyoke.edu
+for key in "${!users[@]}"; do sudo tljh-config add-item users.${users[$key]} $key; done
 
-sudo tljh-config add-item users.allowed student1@mtholyoke.edu
-sudo tljh-config add-item users.allowed student2@mtholyoke.edu
-sudo tljh-config add-item users.allowed student3@mtholyoke.edu
-sudo tljh-config add-item users.allowed student4@mtholyoke.edu
-sudo tljh-config add-item users.allowed student5@mtholyoke.edu
-sudo tljh-config add-item users.allowed student6@mtholyoke.edu
+# tried to replace commands that don't need special files with for loop 
+# sudo tljh-config add-item users.admin bgebreme@mtholyoke.edu
+# sudo tljh-config add-item users.admin jsidman@mtholyoke.edu
+# sudo tljh-config add-item users.admin dyoung@mtholyoke.edu
+# sudo tljh-config add-item users.admin kmulder@mtholyoke.edu
+
+# sudo tljh-config add-item users.allowed student1@mtholyoke.edu
+# sudo tljh-config add-item users.allowed student2@mtholyoke.edu
+# sudo tljh-config add-item users.allowed student3@mtholyoke.edu
+# sudo tljh-config add-item users.allowed student4@mtholyoke.edu
+# sudo tljh-config add-item users.allowed student5@mtholyoke.edu
+# sudo tljh-config add-item users.allowed student6@mtholyoke.edu
 
 # YOU CAN NOT TEST THIS IF YOU DON’T HAVE THE SPECIAL FILES
 # sudo mv dsjupyterhub.mtholyoke.edu.key /etc/ssl/private
