@@ -9,7 +9,7 @@ All Bash scripts start with this special comment:
 #! /bin/bash
 ```
 
-When you createa new script file, make sure that you add execute permissions to your script files before you commit them to the repository for the first time:
+When you create a new script file, make sure that you add execute permissions to your script files before you commit them to the repository for the first time:
 ```
 chmod a+x examples/example-script.sh
 ```
