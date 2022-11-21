@@ -14,9 +14,8 @@ hub_url="comsc243jupyterhub.mtholyoke.edu"
 # admins - there should be at least one
 administrators=""
 
-# space separated email addresses for students
-# students - there should be at least one
-students=""
+# Roster from my.mtholyoke. This file should be in the current directory. 
+ROSTER=Roster_for_2022FA_SOCI216TX01_11-07-2022_211718.xls
 
 # SSL variables
 cert_key="comsc243jupyterhub.mtholyoke.edu.key"
@@ -53,11 +52,34 @@ do
         sudo tljh-config add-item users.admin $ADMIN
 done
 
+# START ADD STUDENTS FROM CSV 
 # add allowed users
-for STUDENT in $students
+
+# get the line number that matches the string to remove footer
+ROSTER_LEN=`awk '/Waitlisted Students:/{ print NR; exit }' $ROSTER`
+
+# Adjust where to cut the footer
+let ROSTER_LEN-=1
+
+# set the delineator to tabs. Not sure what OLDIFS does.
+OLDIFS=$IFS
+IFS='	'
+
+# not sure what this does
+[ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
+
+# while loop to identify the emails. 
+# the done line does three things: 
+# 1. targets the third column, 2. gets rid of last few lines, 3. gets rid of the first few lines
+while read -r Email
 do
-        sudo tljh-config add-item users.allowed $STUDENT
-done
+	sudo tljh-config add-item users.allowed $Email
+done < <(cut -d '	' -f3 $ROSTER | head -n $ROSTER_LEN | tail -n +4)
+
+# not sure what this does
+IFS=$OLDIFS
+
+# END ADD STUDENTS FROM CSV 
 
 # key file - move and set permissions
 sudo mv $cert_key /etc/ssl/private
@@ -98,7 +120,7 @@ sudo tljh-config set services.cull.timeout $secs_to_time_out
 
 ####################################
 # Finish up
-####################################≠≠
+####################################
 
 #don't know why this doesn't work
 #sudo tljh-config reload proxy
