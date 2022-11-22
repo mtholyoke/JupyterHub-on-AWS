@@ -1,2 +1,5 @@
 # Ignore Mac dotfiles
 .DS_Store
+
+# Ignore secrets.txt files
+secrets.txt
