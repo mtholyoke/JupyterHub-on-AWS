@@ -1,15 +1,15 @@
 #!/bin/bash
 
-####################################
-# Variables
-####################################
-
 ## make sure it's being run as root
 the_user=$(whoami) 
 if [ "$the_user" != "root" ] 
 then
 	echo "please run this script as root" && exit
 fi
+
+####################################
+# Variables
+####################################
 
 # course name for shared folder
 course_name="COMSC_243_shared"
@@ -32,6 +32,12 @@ cert_interm="comsc243jupyterhub_mtholyoke_edu_interm.cer"
 # Removed these because they are secrets 
 auth_client_id=""
 auth_client_secret=""
+
+# User CPU limit - borrowed from Data8 documentation
+user_cpu_limit=2
+
+# User memory limit - borrowed from Data8 documentation
+user_memory_limit="4G"
 
 # Cull idle notebooks if inactive for some number of seconds
 secs_to_time_out=5400
@@ -119,8 +125,9 @@ tljh-config set auth.GoogleOAuthenticator.oauth_callback_url https://$hub_url/hu
 
 tljh-config set auth.type oauthenticator.google.GoogleOAuthenticator
 
-
-# tljh-config reload
+# change user resource limits
+tljh-config set limits.cpu $user_cpu_limit
+tljh-config set limits.memory $user_memory_limit
 
 # change seconds to time out if notebook is idle
 tljh-config set services.cull.timeout $secs_to_time_out
